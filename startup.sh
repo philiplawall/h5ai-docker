@@ -26,5 +26,9 @@ if [ -s /conf/custom.css ]; then
   sed -i "s/\"styles\": \[/ \"styles\": \[ \"custom.css\",/" /var/www/_h5ai/private/conf/options.json
 fi
 
+if [ -s /conf/colors.less ]; then
+  cp /conf/colors.less /var/www/_h5ai/public/css/lib/
+fi
+
 service lighttpd restart
 tail -f /dev/null
