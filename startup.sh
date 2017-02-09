@@ -12,6 +12,14 @@ if [ -s /conf/index.html ]; then
   cp /conf/index.html /var/www/
 fi
 
+if [ -s /conf/_h5ai.headers.html ]; then
+  cp /conf/_h5ai.headers.html /var/www/
+fi
+
+if [ -s /conf/_h5ai.footers.html ]; then
+  cp /conf/_h5ai.footers.html /var/www/
+fi
+
 if [ -s /conf/Masthead.html ]; then
   sed -i '/<body id="root" class="index">/ r /conf/Masthead.html' /var/www/_h5ai/private/php/pages/index.php
 fi
