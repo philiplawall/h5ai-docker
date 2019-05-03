@@ -15,11 +15,11 @@ RUN lighty-enable-mod fastcgi && \
     lighty-enable-mod fastcgi-php
 COPY lighttpd.conf /etc/lighttpd/
 
-ARG VERSION=0.29.0
+ARG VERSION=0.29.2
 RUN mkdir -p /var/www && \
     wget https://release.larsjung.de/h5ai/h5ai-$VERSION.zip && \
     unzip h5ai-$VERSION.zip -d /var/www/ && \
-    sed -i "s;\"hidden\": \[;\"hidden\": \[\"^/img\",\"^/html\",;" /var/www/_h5ai/private/conf/options.json
+    sed -i "s;\"hidden\": \[;\"hidden\": \[\"cgi-bin\",\"^/img\",\"^/html\",;" /var/www/_h5ai/private/conf/options.json
 
 RUN mkdir /conf
 COPY startup.sh /
