@@ -16,15 +16,16 @@ RUN lighty-enable-mod fastcgi && \
 COPY lighttpd.conf /etc/lighttpd/
 
 ARG VERSION=0.29.2
-RUN mkdir -p /var/www && \
+RUN mkdir -p /var/www/html && \
     wget https://release.larsjung.de/h5ai/h5ai-$VERSION.zip && \
-    unzip h5ai-$VERSION.zip -d /var/www/ && \
-    sed -i "s;\"hidden\": \[;\"hidden\": \[\"cgi-bin\",\"^/img\",\"^/html\",;" /var/www/_h5ai/private/conf/options.json
+    unzip h5ai-$VERSION.zip -d /var/www/html/ && \
+    sed -i "s;\"hidden\": \[;\"hidden\": \[\"cgi-bin\",\"^/img\",\"^/utils\",;" /var/www/html/_h5ai/private/conf/options.json
 
 RUN mkdir /conf
 COPY startup.sh /
 EXPOSE 8080
-WORKDIR /var/www/html
+RUN mkdir -p /var/www/html/utils
+WORKDIR /var/www/html/utils
 ARG CACHEBUSTER=156725123
 RUN git clone https://github.com/rjchallis/assembly-stats && \
     git clone https://github.com/rjchallis/codon-usage
