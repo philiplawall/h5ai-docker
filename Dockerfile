@@ -26,7 +26,7 @@ COPY startup.sh /
 EXPOSE 8080
 RUN mkdir -p /var/www/html/utils
 WORKDIR /var/www/html/utils
-ARG CACHEBUSTER=156725123
+ARG CACHEBUSTER=15a7f5e23
 RUN git clone https://github.com/rjchallis/assembly-stats && \
     git clone https://github.com/rjchallis/codon-usage
 CMD /startup.sh
