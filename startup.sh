@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ -s /conf/lighttpd.conf ]; then
-  cp /conf/lighttpd.conf /etc/lighttpd/
+  cp /conf/lighttpd.conf /lighttpd/conf/
 fi
 
 if [ -s /conf/options.json ]; then
@@ -45,5 +45,5 @@ fi
 
 rm -f /var/www/html/index.lighttpd.html
 
-service lighttpd restart
+/lighttpd/sbin/lighttpd -f /lighttpd/conf/lighttpd.conf
 tail -f /dev/null
