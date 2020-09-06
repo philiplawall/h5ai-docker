@@ -14,15 +14,13 @@ RUN sed -Ei 's/^# deb-src /deb-src /' /etc/apt/sources.list && \
     apt-get update && \
     apt-get -y build-dep lighttpd
 
-RUN useradd lighttpd && mkdir -p /lighttpd/conf && chown -R lighttpd:lighttpd /lighttpd
+RUN mkdir -p /lighttpd/conf
 
 RUN mkdir -p /var/www/html && chown -R lighttpd:lighttpd /var/www/html
 
 RUN mkdir -p /conf && chown -R lighttpd:lighttpd /conf
 
 EXPOSE 8080
-
-USER lighttpd
 
 WORKDIR /tmp
 
@@ -33,9 +31,6 @@ WORKDIR /tmp/lighttpd-1.4.54
 RUN ./configure --prefix=/lighttpd \
     && make \
     && make install
-
-#RUN lighty-enable-mod fastcgi && \
-#    lighty-enable-mod fastcgi-php
 
 COPY lighttpd.conf /lighttpd/conf/
 
