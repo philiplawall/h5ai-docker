@@ -16,9 +16,9 @@ RUN sed -Ei 's/^# deb-src /deb-src /' /etc/apt/sources.list && \
 
 RUN mkdir -p /lighttpd/conf
 
-RUN mkdir -p /var/www/html && chown -R lighttpd:lighttpd /var/www/html
+RUN mkdir -p /var/www/html
 
-RUN mkdir -p /conf && chown -R lighttpd:lighttpd /conf
+RUN mkdir -p /conf
 
 EXPOSE 8080
 
